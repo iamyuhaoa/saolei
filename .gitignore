@@ -45,7 +45,9 @@ htmlcov/
 Thumbs.db
 
 # PyInstaller
-*.spec
 build/
 dist/
 *.manifest
+
+# Allow our build spec file
+!build.spec
