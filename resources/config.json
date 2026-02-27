@@ -1,0 +1,28 @@
+{
+  "minesweeper": {
+    "window_class_priority": [
+      "Minesweeper",
+      "Windows.UI.Core.CoreWindow",
+      "UnityWndClass"
+    ],
+    "window_title_pattern": ".*[Mm]inesweeper.*"
+  },
+  "board": {
+    "cell_detection_method": "color",
+    "template_matching_threshold": 0.7,
+    "color_tolerance": 30
+  },
+  "solver": {
+    "enable_logic_rules": true,
+    "enable_probability_calculation": true,
+    "max_configurations": 10000
+  },
+  "mouse": {
+    "action_delay": 0.1,
+    "enable_safety": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "minesweeper_ai.log"
+  }
+}
