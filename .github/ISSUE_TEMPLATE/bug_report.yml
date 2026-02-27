@@ -1,0 +1,72 @@
+name: Bug Report
+description: 报告EXE运行时遇到的问题
+title: "[EXE Bug] "
+labels: ["bug", "exe"]
+body:
+  - type: dropdowns
+    id: environment
+    attributes:
+      label: 测试环境
+      options:
+        - label: Windows 10
+        - label: Windows 11
+        - label: 其他
+    validations:
+      required: true
+
+  - type: dropdowns
+    id: minesweeper_version
+    attributes:
+      label: 扫雷游戏版本
+      options:
+        - label: Windows 7 经典版
+        - label: Windows 10/11 内置版
+        - label: Microsoft Store版
+        - label: 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 请详细描述您遇到的问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 一步步说明如何复现问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 您期望发生什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 实际发生了什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志信息
+      description: 请粘贴控制台输出或 minesweeper_ai.log 的内容
+      render: text
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 截图（如果有）
+      description: 您可以上传截图来帮助说明问题
