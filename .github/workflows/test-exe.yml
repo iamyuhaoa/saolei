@@ -36,19 +36,30 @@ jobs:
         Write-Host "   下载完成"
         Write-Host ""
 
-        # 解压
-        Write-Host "3. 解压文件..."
-        if (Test-Path "MinesweeperAI-Windows.zip") {
-          Expand-Archive -Path "MinesweeperAI-Windows.zip" -DestinationPath . -Force
-          Write-Host "   解压完成"
+        # 列出下载的文件
+        Write-Host "3. 检查下载的文件..."
+        Get-ChildItem -Recurse | ForEach-Object { Write-Host "   - $($_.FullName)" }
+        Write-Host ""
+
+        # 查找EXE（可能在根目录或子目录中）
+        Write-Host "4. 查找EXE文件..."
+        $exeFile = Get-ChildItem -Recurse -Filter "MinesweeperAI.exe" | Select-Object -First 1
+
+        if ($exeFile) {
+          Write-Host "   ✓ 找到EXE: $($exeFile.FullName)"
+          # 移动到当前目录
+          if ($exeFile.FullName -ne (Join-Path (Get-Location) "MinesweeperAI.exe")) {
+            Move-Item -Path $exeFile.FullName -Destination "MinesweeperAI.exe" -Force
+            Write-Host "   ✓ 已移动到当前目录"
+          }
         } else {
-          Write-Error "   ✗ zip文件不存在"
+          Write-Error "   ✗ 未找到EXE文件"
           exit 1
         }
         Write-Host ""
 
         # 验证EXE
-        Write-Host "4. 验证EXE文件..."
+        Write-Host "5. 验证EXE文件..."
         if (Test-Path "MinesweeperAI.exe") {
           $size = [math]::Round((Get-Item MinesweeperAI.exe).Length / 1MB, 2)
           Write-Host "   ✓ EXE文件存在"
@@ -61,7 +72,7 @@ jobs:
         Write-Host ""
 
         # 检查EXE基本信息
-        Write-Host "5. 检查EXE信息..."
+        Write-Host "6. 检查EXE信息..."
         Write-Host "   文件名: MinesweeperAI.exe"
         Write-Host "   位置: $((Get-Location).Path)"
         Write-Host ""
