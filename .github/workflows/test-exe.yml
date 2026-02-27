@@ -24,9 +24,9 @@ jobs:
         Write-Host "========================================"
         Write-Host ""
 
-        # 获取最新的构建ID
-        Write-Host "1. 获取最新构建ID..."
-        $runId = gh run list --repo $env:GITHUB_REPOSITORY --branch main --json databaseId --limit 1 --jq '.[0].databaseId'
+        # 获取最新的 Build Windows EXE 构建ID
+        Write-Host "1. 获取最新 Build Windows EXE 构建ID..."
+        $runId = gh run list --repo $env:GITHUB_REPOSITORY --branch main --workflow=build.yml --json databaseId --limit 1 --jq '.[0].databaseId'
         Write-Host "   构建ID: $runId"
         Write-Host ""
 
